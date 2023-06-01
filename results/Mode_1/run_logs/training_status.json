@@ -1,0 +1,65 @@
+{
+    "Assembly": {
+        "checkpoints": [
+            {
+                "steps": 649985,
+                "file_path": "results\\learning_demo29\\Assembly\\Assembly-649985.onnx",
+                "reward": null,
+                "creation_time": 1685529556.87969,
+                "auxillary_file_paths": [
+                    "results\\learning_demo29\\Assembly\\Assembly-649985.pt"
+                ]
+            },
+            {
+                "steps": 699989,
+                "file_path": "results\\learning_demo29\\Assembly\\Assembly-699989.onnx",
+                "reward": -1983.3999535143375,
+                "creation_time": 1685529756.7066376,
+                "auxillary_file_paths": [
+                    "results\\learning_demo29\\Assembly\\Assembly-699989.pt"
+                ]
+            },
+            {
+                "steps": 749989,
+                "file_path": "results\\learning_demo29\\Assembly\\Assembly-749989.onnx",
+                "reward": -1972.8499682471156,
+                "creation_time": 1685529955.842188,
+                "auxillary_file_paths": [
+                    "results\\learning_demo29\\Assembly\\Assembly-749989.pt"
+                ]
+            },
+            {
+                "steps": 799976,
+                "file_path": "results\\learning_demo29\\Assembly\\Assembly-799976.onnx",
+                "reward": -1611.2249703407288,
+                "creation_time": 1685530153.5520318,
+                "auxillary_file_paths": [
+                    "results\\learning_demo29\\Assembly\\Assembly-799976.pt"
+                ]
+            },
+            {
+                "steps": 840155,
+                "file_path": "results\\learning_demo29\\Assembly\\Assembly-840155.onnx",
+                "reward": -1825.3142454709325,
+                "creation_time": 1685530329.4007435,
+                "auxillary_file_paths": [
+                    "results\\learning_demo29\\Assembly\\Assembly-840155.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 840155,
+            "file_path": "results\\learning_demo29\\Assembly.onnx",
+            "reward": -1825.3142454709325,
+            "creation_time": 1685530329.4007435,
+            "auxillary_file_paths": [
+                "results\\learning_demo29\\Assembly\\Assembly-840155.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.0"
+    }
+}
