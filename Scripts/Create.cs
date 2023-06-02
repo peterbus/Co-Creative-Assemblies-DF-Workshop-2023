@@ -30,6 +30,7 @@ public class Create : MonoBehaviour
     public LayerMask collisionLayer;
     private GameObject newPrefab;
     int counterPrefab = 0;
+
     
     // Start is called before the first frame update
     void Start()
@@ -76,21 +77,24 @@ public class Create : MonoBehaviour
                 allPrefabs.Clear();
             }
         }
+            Vector3 offset_env = Environment.transform.position;
+            Vector3 correctPos = offset_env - Pos.localPosition;
+
             int n = UnityEngine.Random.Range(0, objectsToInstantiate.Length);
             allPrefabs = new List<GameObject>();
-            GameObject newPrefab = Instantiate(objectsToInstantiate[n], Pos.localPosition, Pos.localRotation);
-            newPrefab.transform.SetParent(Environment.gameObject.transform);
+            GameObject newPrefab = Instantiate(objectsToInstantiate[n], correctPos, Pos.localRotation, Environment.transform);
+            //newPrefab.transform.SetParent(Environment.gameObject.transform);
             allPrefabs.Add(newPrefab);
 
 
         
         if (activePrefab == null)
         {
-            activePrefab = Instantiate(objectsToInstantiate[n], Pos.localPosition, Pos.localRotation);//lastly added prefab each time
+            activePrefab = Instantiate(objectsToInstantiate[n], correctPos, Pos.localRotation, Environment.transform);//lastly added prefab each time
             activePrefab.transform.localScale = new Vector3(1f, 2f, 1f); //initial starting cube. The scale units are related exactly to properties of the prefab. 
             activePrefab.GetComponent<MeshRenderer>().material.color = Color.magenta;// new Color(1.0f, 0.15f, 0.15f);
             activePrefab.tag = "activePrefab";
-            activePrefab.transform.SetParent(Environment.gameObject.transform);
+            //activePrefab.transform.SetParent(Environment.gameObject.transform);
             // Debug.Log("Component" + objectsToInstantiate[n] + "added");
 
         }
@@ -98,10 +102,10 @@ public class Create : MonoBehaviour
         //visualisation where the tester vector is created
         if(Generator == null)
         {
-            Generator = Instantiate(objectsToInstantiate[n], Pos.localPosition, Pos.localRotation);
+            Generator = Instantiate(objectsToInstantiate[n], correctPos, Pos.localRotation, Environment.transform);
             Generator.transform.localScale = new Vector3(1f, 1f, 1f); //initial starting cube
             Generator.GetComponent<MeshRenderer>().material.color = new Color(0.15f, 0.15f, 1.0f);
-            Generator.transform.SetParent(Environment.gameObject.transform);
+           // Generator.transform.SetParent(Environment.gameObject.transform);
             // Debug.Log("Component" + objectsToInstantiate[n] + "added");
         }
     }
@@ -168,7 +172,8 @@ public class Create : MonoBehaviour
         growDir = forceOrtho(growDir);//orthogonal vector, growth is executed within those constraints, defines the position of the growing system       
         int n = UnityEngine.Random.Range(0, objectsToInstantiate.Length);
         Vector3 newPos = testGameObj.transform.localPosition + growDir;
-
+        Vector3 offset_env = Environment.transform.position;
+        Vector3 correctPos = offset_env - Pos.localPosition;
         //this part checks the collisions-adjustment of the positions in y direction
         Collider[] colliders = Physics.OverlapBox(newPos, new Vector3(0f, 1.0f, 0f));
         if (colliders.Length > 0)
@@ -180,17 +185,17 @@ public class Create : MonoBehaviour
         //instantiate specific order of prefabs, based on counting
           if (counterPrefab == 0)
           {
-              newPrefab = Instantiate(objectsToInstantiate[0], newPos, Pos.rotation);
+              newPrefab = Instantiate(objectsToInstantiate[0], correctPos, Pos.rotation, Environment.transform);
               counterPrefab++;
           }else
           if (counterPrefab==1)
           {
-          newPrefab = Instantiate(objectsToInstantiate[1], newPos, Pos.rotation);
+          newPrefab = Instantiate(objectsToInstantiate[1], correctPos, Pos.rotation, Environment.transform);
              counterPrefab++;
           }else 
           if(counterPrefab==2)
           {
-          newPrefab = Instantiate(objectsToInstantiate[2], newPos, Pos.rotation);
+          newPrefab = Instantiate(objectsToInstantiate[2], correctPos, Pos.rotation, Environment.transform);
              counterPrefab=0;
           }
 
