@@ -150,7 +150,7 @@ public class Builder : Agent
         }
 
         //When the agent goes beyond the space. It depends of the boundary which determines the assembly space
-        if (gameObject.transform.localPosition.x < -7 || gameObject.transform.localPosition.x > -1
+        if (gameObject.transform.localPosition.x < -7 || gameObject.transform.localPosition.x > 1
             || gameObject.transform.localPosition.z < -1 || gameObject.transform.localPosition.z > 7)
         {
             AddReward(-10);
@@ -237,7 +237,7 @@ public class Builder : Agent
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other) //OnTriggerStay is called once per physics update for every Collider other that is touching the trigger(agent).
     {
         if (other.gameObject.CompareTag("Prefab") || other.gameObject.CompareTag("activePrefab"))
         {
@@ -254,7 +254,6 @@ public class Builder : Agent
             AddReward(3f);//the treat
             EndEpisode();
         }
-
     }
 
     //for Mode2, instead of custom predefined assembly
@@ -266,7 +265,6 @@ public class Builder : Agent
 
         Vector3 gridOffset = training_environment.position; // -new Vector3(gridSize.x/2f , gridSize.y/2f, gridSize.z/2f);//in case an origin is in the middle of the grid
         //GameObject parentObject = new GameObject("PrefabParent");
-
 
         //populate the entire grid with the copmponents and put it in the parent object
         for (int x = 0; x < gridWidth; x++)
@@ -283,7 +281,7 @@ public class Builder : Agent
                 }
             }
         }
-       
+     
         int allComponents = gridWidth * gridHeight * gridDepth;//amount of all components in the grid=the grid size
         int rest = allComponents - totalpositions;
         for (int i = 0; i< rest; i++)//only the amount of total positions will remain, all the others will be destroyed
@@ -292,14 +290,9 @@ public class Builder : Agent
             GameObject prefabtoDestroy = trainingAssemblies[randomIndex];
             trainingAssemblies.RemoveAt(randomIndex);
             Destroy(prefabtoDestroy);
-
         }
        
     }
 
 }
- 
-
-    
-
 
